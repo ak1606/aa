@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class TSPMutationDemo {
+
+    // Function to perform Swap Mutation on a TSP chromosome
+    public static int[] mutateChromosome(int[] chromosome) {
+        Random random = new Random();
+
+        // Clone the original chromosome to avoid modifying it directly
+        int[] mutatedChromosome = chromosome.clone();
+
+        // Randomly select two distinct positions to swap
+        int pos1 = random.nextInt(mutatedChromosome.length);
+        int pos2 = random.nextInt(mutatedChromosome.length);
+
+        // Ensure the positions are distinct
+        while (pos1 == pos2) {
+            pos2 = random.nextInt(mutatedChromosome.length);
+        }
+
+        // Perform the swap
+        int temp = mutatedChromosome[pos1];
+        mutatedChromosome[pos1] = mutatedChromosome[pos2];
+        mutatedChromosome[pos2] = temp;
+
+        return mutatedChromosome;
+    }
+
+    public static void main(String[] args) {
+        // Example chromosome (a TSP solution)
+        int[] chromosome = {1, 2, 3, 4, 5, 6, 7};
+
+        // Perform mutation
+        System.out.println("Original Chromosome: " + Arrays.toString(chromosome));
+        int[] mutatedChromosome = mutateChromosome(chromosome);
+        System.out.println("Mutated Chromosome : " + Arrays.toString(mutatedChromosome));
+    }
+}
